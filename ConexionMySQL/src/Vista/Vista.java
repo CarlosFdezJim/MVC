@@ -1,17 +1,29 @@
 /**
  * @author Fernandez
  */
+
 package Vista;
 
-import Conexion.Conector;
 import Controlador.Controlador;
+import Modelo.Modelo;
+import java.io.IOException;
 import java.util.Scanner;
+
+
+/**
+ * Aquí pedimos al usuario que queremos.
+ */
 
 public class Vista {
     
-    public void Menu(){
+    Controlador controlador;
+    
+    public Vista() {
+        controlador = new Controlador();
+    
+ }   
+    public void printMenu() throws IOException{
         
-        Conector conectBDConexion;
         Scanner entrada = new Scanner(System.in);
         
         System.out.println("------------------------------");
@@ -21,14 +33,16 @@ public class Vista {
         System.out.println("3 - Salir ");
         System.out.println("------------------------------");
         int opcion = entrada.nextInt();
-        
+      
+       
         switch (opcion) {
             case 1:
-                System.out.println("¡Holi! Soy todos los datos de los alumnos.");
-                
+                System.out.println("Mostrar los datos de los alumnos.");
+                controlador.MostrarUsuarios();
                 break;
             case 2:
-                System.out.println("¡Holi! Soy todas las asignatura.");
+                System.out.println("Mostrar todas las asignatura.");
+                controlador.MostrarAsignaturas();
                 break;
             case 3:
                 System.out.println("Enga a tu casa");
@@ -37,17 +51,10 @@ public class Vista {
                 System.err.println("Opción inválida");
                 break;
         }
-        
     }
     
-    public static void main(String[] args) {
-        Vista v = new Vista();
-        Conector c = new Conector();
-        c.ConexionDataBase();
-        Controlador controlador = new Controlador();
-        //controlador.MostrarUsuarios();
-        //v.Menu();
-        
+    public void IniciarComponet() throws IOException{
+        this.printMenu();
         
         
         
