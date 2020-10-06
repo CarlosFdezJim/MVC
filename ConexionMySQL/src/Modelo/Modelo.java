@@ -4,12 +4,11 @@
 
 package Modelo;
 
-import Conexion.Conector;
-import java.sql.Connection;
-import java.io.IOException;
+import Controlador.AlumnoController;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 
 /**
@@ -17,47 +16,21 @@ import java.sql.Statement;
  */
 
 public class Modelo {
-    
-    private static final String user = "root";
-    private static final String password = "1234";
-    private static final String url = "jdbc:mysql://localhost:3306/universidad?serverTimezone=UTC&useSSL=false";
-    private Conector conector = null;
-    private Connection connection;
-    Statement st;
-    
-    public Modelo(){
-        conector = new Conector();
-        
-    }
-    
  
-    public void MostrarUsuarios(){
+    public void MostrarAlumnos(){
         
-        System.out.println("MOSTRAR ALUMNOS");
-        String query = "SELECT * FROM alumnos";
-        
-        try {
-            st = connection.createStatement();
-            ResultSet rs =  st.executeQuery(query);
-            
-            while(rs.next()){
-                System.out.println(rs.getString("DNI") + (" | ") + rs.getString("Nombre") + (" | ") + rs.getString("Apellidos") + (" | ") + rs.getString("Direccion") + (" | ") + rs.getString("Ciudad") + (" | "));
-            }
-            
-            System.out.println("Conexión terminada...");
-            connection.close();
-        } catch (SQLException e) {
-            System.err.println("Error de conexión " + e);
-        }
+    AlumnoController alu = new AlumnoController();
+    ArrayList<Alumnos> DBAlumnos = alu.getAlumnos();
     }
     
     public void MostrarAsignaturas(){
         
-        System.out.println("MOSTRAR ASIGNATURAS");
+        /*System.out.println("MOSTRAR ASIGNATURAS");
         String query = "SELECT * FROM asignatura";
         
         try {
-            Statement st = connection.createStatement();
+            this.conexConnection = con.getConection();
+            Statement st = conexConnection.createStatement();
             ResultSet rs =  st.executeQuery(query);
             
             while(rs.next()){
@@ -65,9 +38,9 @@ public class Modelo {
             }
             
             System.out.println("Conexión terminada...");
-            connection.close();
+            conexConnection.close();
         } catch (SQLException e) {
             System.err.println("Error de conexión " + e);
-        }
+        }*/
     }
 }

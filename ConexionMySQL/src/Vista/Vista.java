@@ -5,7 +5,6 @@
 package Vista;
 
 import Controlador.Controlador;
-import Modelo.Modelo;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -16,7 +15,7 @@ import java.util.Scanner;
 
 public class Vista {
     
-    Controlador controlador;
+    Controlador controlador = null;
     
     public Vista() {
         controlador = new Controlador();
@@ -39,6 +38,7 @@ public class Vista {
             case 1:
                 System.out.println("Mostrar los datos de los alumnos.");
                 controlador.MostrarUsuarios();
+                
                 break;
             case 2:
                 System.out.println("Mostrar todas las asignatura.");
@@ -55,7 +55,6 @@ public class Vista {
     
     public void IniciarComponet() throws IOException{
         this.printMenu();
-        
         
         
     }

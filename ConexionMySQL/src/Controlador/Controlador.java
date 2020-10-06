@@ -4,7 +4,6 @@
 package Controlador;
 
 import Modelo.Modelo;
-import java.io.IOException;
 
 /**
  * Esta clase se encarga de pedir a los datos al MODELO.
@@ -12,17 +11,14 @@ import java.io.IOException;
 
 public class Controlador {
     
-    private Modelo mod;
+    private Modelo mod = new Modelo();;
     
-    public Controlador(){
-        mod = new Modelo();
-    }
  
-    public void MostrarUsuarios() throws IOException{
-        mod.MostrarUsuarios();
+    public void MostrarUsuarios(){
+        mod.MostrarAlumnos();
     }
     
-    public void MostrarAsignaturas() throws IOException{
+    public void MostrarAsignaturas(){
         
         mod.MostrarAsignaturas();
     }
