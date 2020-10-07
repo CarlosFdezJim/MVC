@@ -4,43 +4,45 @@
 
 package Modelo;
 
+import Conexion.Conector;
 import Controlador.AlumnoController;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import Controlador.AsignaturaController;
+import Controlador.MatriculaController;
+import com.sun.jdi.connect.spi.Connection;
 import java.sql.Statement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 
 
-/**
- * Esta clase se encarga de gestionar los datos que le piden desde el CONTROLADOR.
- */
-
 public class Modelo {
+    
+    protected Conector con = new Conector();
+    protected Connection conexConnection;
+    protected Statement st;
+    protected ResultSet rs;
+    
+    /**************************************************************************/
  
-    public void MostrarAlumnos(){
+    public ArrayList MostrarAlumnos(){
         
-    AlumnoController alu = new AlumnoController();
-    ArrayList<Alumnos> DBAlumnos = alu.getAlumnos();
+        AlumnoController alu = new AlumnoController();
+        ArrayList<Alumnos> DBAlumnos = alu.getAlumnos();
+        return DBAlumnos;
     }
     
-    public void MostrarAsignaturas(){
+    public ArrayList MostrarAsignaturas(){
         
-        /*System.out.println("MOSTRAR ASIGNATURAS");
-        String query = "SELECT * FROM asignatura";
-        
-        try {
-            this.conexConnection = con.getConection();
-            Statement st = conexConnection.createStatement();
-            ResultSet rs =  st.executeQuery(query);
-            
-            while(rs.next()){
-                System.out.println(rs.getString("Cod_asig") + (" | ") + rs.getString("Nombre") + (" | ") + rs.getString("Curso") + (" | "));
-            }
-            
-            System.out.println("Conexión terminada...");
-            conexConnection.close();
-        } catch (SQLException e) {
-            System.err.println("Error de conexión " + e);
-        }*/
+        AsignaturaController asig = new AsignaturaController();
+        ArrayList<Asignaturas> DBAsignaturas = asig.getAsignaturas();
+        return DBAsignaturas;
     }
+    
+    public ArrayList MostrarMatriculas(){
+        
+        MatriculaController mat = new MatriculaController();
+        ArrayList<Matricula> DBMatriculas = mat.getMatricula();
+        return DBMatriculas;
+    }
+    
 }
+

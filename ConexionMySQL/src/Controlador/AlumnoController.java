@@ -5,6 +5,7 @@
 package Controlador;
 
 import Conexion.Conector;
+import Modelo.Modelo;
 import Modelo.Alumnos;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -13,26 +14,31 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 
-public class AlumnoController {
+public class AlumnoController extends Modelo{
     
     private Conector con = new Conector();
-    public Connection conexConnection;
+    private Connection conexConnection;
+    private Modelo mod = null;
+    private String DNIString = null;
+    private String NombreString = null;
+    private String ApellidoString = null;
+    private String DireccionString = null;
+    private String CiudadString = null;
+
+    
+    /**************************************************************************/
     
     public ArrayList<Alumnos> getAlumnos(){
         
-       String query = "SELECT * FROM alumnos";
+       String query = "SELECT * FROM universidad.alumnos";
        ArrayList<Alumnos> viewAlumnos = new ArrayList<>();
        
         try {
             this.conexConnection = con.getConection();
-            Statement st = conexConnection.createStatement();
-            ResultSet rs =  st.executeQuery(query);
-            
+            st = conexConnection.createStatement();
+            rs =  st.executeQuery(query);
             
             while(rs.next()){
-                //System.out.println(rs.getString("DNI") + (" | ") + rs.getString("Nombre") + (" | ") + rs.getString("Apellidos") + (" | ") +
-                //rs.getString("Direccion") + (" | ") + rs.getString("Ciudad") + (" | "));
-                
                 Alumnos alu = new Alumnos();
                 alu.setDNIString(rs.getString("DNI"));
                 alu.setNombreString(rs.getString("Nombre"));
@@ -43,7 +49,8 @@ public class AlumnoController {
             }
             
             System.out.println("Conexión terminada...");
-            conexConnection.close();
+            con.CloseConnection(conexConnection);
+            //conexConnection.close();
         } catch (SQLException e) {
             System.err.println("Error de conexión " + e);
         }

@@ -1,25 +1,26 @@
 /**
  * @author Fernandez
  */
+
 package Controlador;
 
 import Modelo.Modelo;
+import java.util.ArrayList;
 
-/**
- * Esta clase se encarga de pedir a los datos al MODELO.
- */
 
-public class Controlador {
+public class Controlador{
     
-    private Modelo mod = new Modelo();;
-    
+    private Modelo mod = new Modelo();
  
-    public void MostrarUsuarios(){
-        mod.MostrarAlumnos();
+    public ArrayList MostrarAlumnosControlador(){
+        return mod.MostrarAlumnos();
     }
     
-    public void MostrarAsignaturas(){
-        
-        mod.MostrarAsignaturas();
+    public ArrayList MostrarAsignaturasControlador(){
+        return mod.MostrarAsignaturas();
+    }
+    
+    public ArrayList MostrarMatriculaControlador(){
+        return mod.MostrarMatriculas();
     }
 }
