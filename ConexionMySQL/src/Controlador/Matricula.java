@@ -14,7 +14,6 @@ public class Matricula {
     private String CodAsigMatString = null;
     private Integer CursoMatInteger = null;
     
-    /**************************************************************************/
 
     public void setDNIMatString(String DNIMatString) {
         this.DNIMatString = DNIMatString;

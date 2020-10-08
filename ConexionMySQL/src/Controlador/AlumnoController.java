@@ -8,9 +8,7 @@ import Conexion.Conector;
 import Modelo.Modelo;
 import Modelo.Alumnos;
 import java.sql.Connection;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 
@@ -25,8 +23,6 @@ public class AlumnoController extends Modelo{
     private String DireccionString = null;
     private String CiudadString = null;
 
-    
-    /**************************************************************************/
     
     public ArrayList<Alumnos> getAlumnos(){
         
@@ -50,7 +46,7 @@ public class AlumnoController extends Modelo{
             
             System.out.println("Conexión terminada...");
             con.CloseConnection(conexConnection);
-            //conexConnection.close();
+            conexConnection.close();
         } catch (SQLException e) {
             System.err.println("Error de conexión " + e);
         }

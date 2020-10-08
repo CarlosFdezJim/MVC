@@ -70,13 +70,12 @@ public class Matricula extends Modelo{
 
     @Override
     public String toString() {
-        return "Matricula{" +  DNIMatString + ", " + NombreMatString + " " + ApellidoMatString + ", " + NombreAsigMatString + ", " + CodAsigMatString + ", Curso " + CursoMatInteger + '}' + "\n";
+        return "Matricula " +  DNIMatString + ", " + NombreMatString + " " + ApellidoMatString + ", " + NombreAsigMatString + ", " + CodAsigMatString + ", Curso " + CursoMatInteger + "\n";
     }
     
-        public ArrayList<Matricula> getMatricula(){
+       public ArrayList<Matricula> getMatricula(){
         
        String query = "SELECT * FROM universidad.matricula";
-       String query2 = "SELECT * FROM universidad.matricula WHERE Nombre_alu='" + NameSearch + "'";
        ArrayList<Matricula> viewMatricula = new ArrayList<>();
        
         try {
@@ -102,6 +101,36 @@ public class Matricula extends Modelo{
         }
         
         return viewMatricula;
-    }  
+    }
+        
+       public ArrayList<Matricula> getMatricula(String DNISearch){
+        
+       String query = "SELECT * FROM universidad.matricula WHERE DNI='" + DNISearch + "'";
+       ArrayList<Matricula> viewMatricula = new ArrayList<>();
+       
+        try {
+            this.getConection();
+            st = conexConnection.createStatement();
+            rs =  st.executeQuery(query);
+            
+            while(rs.next()){
+                Matricula mat = new Matricula();
+                mat.setDNIMatString(rs.getString("DNI"));
+                mat.setNombreMatString(rs.getString("Nombre_alu"));
+                mat.setApellidoMatString(rs.getString("Apellido_alu"));
+                mat.setNombreAsigMatString(rs.getString("Nombre_asig"));
+                mat.setCodAsigMatString(rs.getString("Cod_asig"));
+                mat.setCursoMatInteger(rs.getInt("Curso"));
+                viewMatricula.add(mat);
+            }
+            
+            System.out.println("Conexión terminada...");
+            this.CloseConnection(conexConnection);
+        } catch (SQLException e) {
+            System.err.println("Error de conexión " + e);
+        }
+        
+        return viewMatricula;
+    }
     
 }

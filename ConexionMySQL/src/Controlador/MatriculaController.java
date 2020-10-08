@@ -1,19 +1,23 @@
 /**
  * @author Fernandez
  */
+
 package Controlador;
 
-import Modelo.Asignaturas;
-import Conexion.Conector;
-import Modelo.Alumnos;
-import Modelo.Modelo;
+
 import Modelo.Matricula;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 
-public class MatriculaController extends Modelo{
 
+public class MatriculaController extends Matricula{
+    
+    public ArrayList traerConexion(){
+       ArrayList<Matricula> DBMatricula = this.getMatricula();
+       return DBMatricula;
+    }
+    
+    public ArrayList traerConexion(String NameSearch){
+       ArrayList<Matricula> DBMatricula = this.getMatricula(NameSearch);
+       return DBMatricula;
+    }
 }

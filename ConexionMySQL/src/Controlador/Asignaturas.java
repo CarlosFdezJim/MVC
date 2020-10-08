@@ -11,9 +11,7 @@ public class Asignaturas {
     private String NombreString = null;
     private Integer CursoInteger = null;
     
-    /**************************************************************************/
     
-
     public void setNombreString(String NombreString) {
         this.NombreString = NombreString;
     }    
