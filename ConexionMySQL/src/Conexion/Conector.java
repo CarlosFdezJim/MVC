@@ -5,9 +5,6 @@
 package Conexion;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-
 
 public class Conector {
     
@@ -19,7 +16,7 @@ public class Conector {
     private String DB = "universidad";
     private String DBurl = "jdbc:mysql://localhost:" + DBport + "/" + DB + "?serverTimezone=UTC&useSSL=false";
     
-    public Connection getConection(){
+ /*   public Connection getConection(){
         
         try {
             Class.forName(DBdriver);
@@ -33,5 +30,5 @@ public class Conector {
     
     public void CloseConnection(Connection con) throws SQLException{
         con.close();
-    }
+    }*/
 }

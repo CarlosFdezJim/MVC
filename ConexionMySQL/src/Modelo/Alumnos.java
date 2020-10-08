@@ -4,8 +4,11 @@
 
 package Modelo;
 
+import java.sql.SQLException;
+import java.util.ArrayList;
 
-public class Alumnos {
+
+public class Alumnos extends Modelo{
     
     private String DNIString = null;
     private String NombreString = null;
@@ -13,17 +16,6 @@ public class Alumnos {
     private String DireccionString = null;
     private String CiudadString = null;
     
-    public Alumnos(){}
-
-    public Alumnos(String DNIString, String NombreString, String ApellidoString,String DireccionString, String CiudadString) {
-        System.out.println("CREANDO ALUMNO...");
-        this.DNIString = DNIString;
-        this.NombreString = NombreString;
-        this.ApellidoString = ApellidoString;
-        this.DireccionString = DireccionString;
-        this.CiudadString = CiudadString;
-        
-    }
     
     public void setDNIString(String DNIString) {
         this.DNIString = DNIString;
@@ -65,13 +57,39 @@ public class Alumnos {
         return CiudadString;
     }
 
-    public void MostrarAlumno(){
+      @Override
+    public String toString() {
+        return "Alumno: " + DNIString + " "+ NombreString + " " + ApellidoString + ", Direccion " + DireccionString + ", " + CiudadString + "\n" ;
+    }     
+    
+   public ArrayList<Alumnos> getAlumnos(){
         
-        System.out.println("Nombre: " + this.getNombreString());
-        System.out.println("Apellido: " + this.getApellidoString());
-        System.out.println("Dirección: " + this.getDireccionString());
-        System.out.println("Ciudad: " + this.getCiudadString());
-    }
-    
-    
+       String query = "SELECT * FROM universidad.alumnos";
+       ArrayList<Alumnos> viewAlumnos = new ArrayList<>();
+       
+        try {
+            this.getConection();
+            st = conexConnection.createStatement();
+            rs =  st.executeQuery(query);
+            
+            while(rs.next()){
+                Alumnos alu = new Alumnos();
+                alu.setDNIString(rs.getString("DNI"));
+                alu.setNombreString(rs.getString("Nombre"));
+                alu.setApellidoString(rs.getString("Apellidos"));
+                alu.setDireccionString(rs.getString("Direccion"));
+                alu.setCiudadString(rs.getString("Ciudad"));
+                viewAlumnos.add(alu);
+            }
+            
+            System.out.println("Conexión terminada...");
+            this.CloseConnection(conexConnection);
+            conexConnection.close();
+        } catch (SQLException e) {
+            System.err.println("Error de conexión " + e);
+        }
+        
+        return viewAlumnos;
+        
+    } 
 }

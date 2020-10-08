@@ -4,10 +4,12 @@
 
 package Vista;
 
+import Controlador.AlumnosController;
 import Modelo.Alumnos;
 import Modelo.Asignaturas;
 import Controlador.Controlador;
 import Modelo.Matricula;
+import Controlador.AsignaturaController;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -22,8 +24,9 @@ public class Vista {
  }   
     
     public void printAlumnunos(){
-        ArrayList<Alumnos> MostrarAlumnosVista;
-        MostrarAlumnosVista = controlador.MostrarAlumnosControlador();
+        ArrayList<Alumnos> MostrarAlumnosVista = new ArrayList<Alumnos>();
+        AlumnosController Alu = new AlumnosController();
+        MostrarAlumnosVista = Alu.traerConexion();
         
         for(int i = 0; i < MostrarAlumnosVista.size(); i++) {   
             System.out.print(MostrarAlumnosVista.get(i));
@@ -31,8 +34,9 @@ public class Vista {
     }
     
     public void printAsignaturas(){
-        ArrayList<Asignaturas> MostrarAsignaturasVista;
-        MostrarAsignaturasVista = controlador.MostrarAsignaturasControlador();
+        ArrayList<Asignaturas> MostrarAsignaturasVista = new ArrayList<Asignaturas>();
+        AsignaturaController Asig = new AsignaturaController();
+        MostrarAsignaturasVista = Asig.traerConexion();
         
         for(int i = 0; i < MostrarAsignaturasVista.size(); i++) {
             System.out.print(MostrarAsignaturasVista.get(i));
